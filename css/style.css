@@ -15,10 +15,10 @@
 
     /* Secundária: laranja, remete a acolhimento e energia humana */
     --color-secondary: #E08D3C;
-    --color-secondary-dark: #B96F27;
+    --color-secondary-dark: #9D5E21; /* escurecido de #B96F27 pra atingir 4.5:1 (WCAG AA) nos badges/alertas */
 
     /* Apoio: azul institucional, usado em links e elementos de reforço */
-    --color-accent: #3B82C4;
+    --color-accent: #377AB8; /* escurecido de #3B82C4 pra atingir 4.5:1 (WCAG AA) como texto de link */
 
     /* Neutras: escala de cinza/bege para texto, fundo e bordas */
     --color-neutral-900: #1A1A1A;
@@ -31,6 +31,19 @@
     /* Feedback: usadas em validação de formulário */
     --color-success: #2F855A;
     --color-error: #C53030;
+
+    /* Fundos suaves ("tint") de badges/alertas + cor de texto legível sobre
+       cada um. Variáveis próprias (não reaproveitam --color-*-dark), porque
+       essas também servem de hover de botão, que não deve clarear no modo
+       escuro. */
+    --color-primary-tint-bg: var(--color-primary-light);
+    --color-on-tint-primary: #1F5F3F;
+    --color-secondary-tint-bg: #FDF0E1;
+    --color-on-tint-secondary: #9D5E21;
+    --color-warning-tint-bg: #FEF3E2;
+    --color-on-tint-warning: #966319; /* escurecido de #B7791F pra atingir 4.5:1 (WCAG AA) */
+    --color-error-tint-bg: #FDEDED;
+    --color-on-tint-error: #C53030;
 
     /* ---------- TIPOGRAFIA ---------- */
 
@@ -68,6 +81,95 @@
 
     /* Breakpoints documentados aqui como referência (usados nas media queries) */
     /* sm: 576px | md: 768px | lg: 1024px | xl: 1280px */
+}
+
+
+/* ==========================================================================
+   MODO ESCURO
+   Reaproveita as MESMAS variáveis do :root (não cria seletores novos pelo
+   projeto inteiro): qualquer regra que já usa var(--color-white) como fundo
+   ou var(--color-neutral-900) como texto muda de aparência sozinha quando
+   essas variáveis são redefinidas aqui. Os valores foram checados com a
+   fórmula de contraste da WCAG e mantêm 4.5:1 (AA) em texto normal.
+
+   Duas formas de ativar: automaticamente pela preferência do sistema
+   operacional (prefers-color-scheme), ou manualmente pelo atributo
+   [data-theme] no <html>, definido pelo botão de alternância em theme.js
+   e persistido no localStorage. O atributo manual tem prioridade sobre a
+   preferência do sistema.
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --color-white: #17191B;
+        --color-neutral-900: #EDEAE3;
+        --color-neutral-700: #B9B6AF;
+        --color-neutral-400: #6B6B6B;
+        --color-neutral-200: #33373A;
+        --color-neutral-100: #1F2224;
+
+        --color-accent: #6BA6DD;
+
+        --color-primary-tint-bg: #16291D;
+        --color-on-tint-primary: #7FD9A5;
+        --color-secondary-tint-bg: #2E2013;
+        --color-on-tint-secondary: #E3A467;
+        --color-warning-tint-bg: #2E2410;
+        --color-on-tint-warning: #D9A857;
+        --color-error-tint-bg: #2E1616;
+        --color-on-tint-error: #FF8A8A;
+    }
+}
+
+:root[data-theme="dark"] {
+    --color-white: #17191B;
+    --color-neutral-900: #EDEAE3;
+    --color-neutral-700: #B9B6AF;
+    --color-neutral-400: #6B6B6B;
+    --color-neutral-200: #33373A;
+    --color-neutral-100: #1F2224;
+
+    --color-accent: #6BA6DD;
+
+    --color-primary-tint-bg: #16291D;
+    --color-on-tint-primary: #7FD9A5;
+    --color-secondary-tint-bg: #2E2013;
+    --color-on-tint-secondary: #E3A467;
+    --color-warning-tint-bg: #2E2410;
+    --color-on-tint-warning: #D9A857;
+    --color-error-tint-bg: #2E1616;
+    --color-on-tint-error: #FF8A8A;
+}
+
+/* Transição suave entre os temas, em vez de uma troca abrupta de cor */
+body,
+header,
+footer,
+.modal,
+input,
+select {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Botão de alternância de tema, no header */
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--color-neutral-200);
+    border-radius: var(--radius-md);
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    color: var(--color-neutral-900);
+}
+
+.theme-toggle:hover {
+    border-color: var(--color-primary);
+}
+
+.theme-toggle:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 
@@ -501,7 +603,7 @@ select:user-valid {
 input:user-invalid,
 select:user-invalid {
     border-color: var(--color-error);
-    background-color: #FDEDED;
+    background-color: var(--color-error-tint-bg);
 }
 
 /* Mesmos estados de sucesso/erro acima, só que aplicados via classe JS
@@ -514,7 +616,7 @@ select:user-invalid {
 
 .campo-invalido {
     border-color: var(--color-error);
-    background-color: #FDEDED;
+    background-color: var(--color-error-tint-bg);
 }
 
 .field-error {
@@ -577,13 +679,13 @@ select:user-invalid {
 }
 
 .badge-primary {
-    background-color: var(--color-primary-light);
-    color: var(--color-primary-dark);
+    background-color: var(--color-primary-tint-bg);
+    color: var(--color-on-tint-primary);
 }
 
 .badge-secondary {
-    background-color: #FDF0E1;
-    color: var(--color-secondary-dark);
+    background-color: var(--color-secondary-tint-bg);
+    color: var(--color-on-tint-secondary);
 }
 
 .badge-success {
@@ -592,8 +694,8 @@ select:user-invalid {
 }
 
 .badge-warning {
-    background-color: #FEF3E2;
-    color: #B7791F;
+    background-color: var(--color-warning-tint-bg);
+    color: var(--color-on-tint-warning);
 }
 
 .badge-neutral {
@@ -630,21 +732,21 @@ select:user-invalid {
 }
 
 .alert-success {
-    background-color: var(--color-primary-light);
+    background-color: var(--color-primary-tint-bg);
     border-left-color: var(--color-success);
-    color: var(--color-primary-dark);
+    color: var(--color-on-tint-primary);
 }
 
 .alert-warning {
-    background-color: #FEF3E2;
+    background-color: var(--color-warning-tint-bg);
     border-left-color: var(--color-secondary);
-    color: var(--color-secondary-dark);
+    color: var(--color-on-tint-secondary);
 }
 
 .alert-error {
-    background-color: #FDEDED;
+    background-color: var(--color-error-tint-bg);
     border-left-color: var(--color-error);
-    color: var(--color-error);
+    color: var(--color-on-tint-error);
 }
 
 
