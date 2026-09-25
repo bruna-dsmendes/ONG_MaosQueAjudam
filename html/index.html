@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mãos que Ajudam</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <header>
+        <a href="#/" class="logo">
+            <img src="../images/logo.png" alt="Logotipo da ONG Mãos que Ajudam">
+        </a>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger" aria-label="Abrir menu de navegação">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav>
+            <ul>
+                <li><a href="#/">Início</a></li>
+                <li class="dropdown">
+                    <a href="#/projetos-sociais">Projetos sociais</a>
+                    <ul class="submenu">
+                        <li><a href="#/projetos-sociais">Educação para Todos</a></li>
+                        <li><a href="#/projetos-sociais">Prato Cheio</a></li>
+                        <li><a href="#/projetos-sociais">Arte na Comunidade</a></li>
+                    </ul>
+                </li>
+                <li><a href="#/cadastro">Doe ou seja voluntário</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--
+        A partir daqui, o conteúdo NÃO é mais estático: o <main id="app">
+        começa vazio e é preenchido dinamicamente pelo router.js, que troca
+        o HTML aqui dentro conforme a rota (#/, #/projetos-sociais, #/cadastro)
+        muda, sem recarregar a página.
+    -->
+    <main id="app">
+        <!-- Conteúdo injetado via JavaScript (ver /js/modules/templates.js) -->
+    </main>
+
+    <footer>
+        <section id="contato">
+            <h2>Contato</h2>
+            <p>Email: contato@maosqueajudam.org.br</p>
+            <p>Telefone: (11) 0000-0000</p>
+        </section>
+        <p>&copy; 2026 ONG Mãos que Ajudam. Todos os direitos reservados.</p>
+    </footer>
+
+    <!--
+        Day.js via CDN: scripts clássicos (sem type="module"), carregados
+        ANTES do nosso script principal. Como não têm "defer" nem "async",
+        executam de forma síncrona assim que o parser chega neles, então o
+        objeto global window.dayjs já existe quando o main.js (que é module,
+        e por isso sempre roda depois de scripts clássicos) é executado.
+        A biblioteca só ocupa UM nome global (dayjs), não polui mais nada.
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/plugin/relativeTime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/locale/pt-br.min.js"></script>
+
+    <script type="module" src="../js/main.js"></script>
+
+</body>
+</html>
