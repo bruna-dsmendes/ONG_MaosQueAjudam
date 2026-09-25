@@ -119,10 +119,10 @@ export const Templates = {
 
                 <input type="checkbox" id="modal-termos-toggle" class="modal-toggle">
                 <div class="modal-overlay">
-                    <div class="modal">
+                    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-termos-titulo">
                         <div class="modal-header">
-                            <h3>Termos de doação</h3>
-                            <label for="modal-termos-toggle" class="modal-close" aria-label="Fechar">&times;</label>
+                            <h3 id="modal-termos-titulo">Termos de doação</h3>
+                            <label for="modal-termos-toggle" class="modal-close" aria-label="Fechar" tabindex="0">&times;</label>
                         </div>
                         <div class="modal-body">
                             <p>
@@ -132,11 +132,11 @@ export const Templates = {
                                 e-mail informado no cadastro, sem custo ou burocracia.
                             </p>
                         </div>
-                        <label for="modal-termos-toggle" class="btn">Entendi</label>
+                        <label for="modal-termos-toggle" class="btn" tabindex="0">Entendi</label>
                     </div>
                 </div>
                 <p>
-                    <label for="modal-termos-toggle" class="btn" style="background-color: var(--color-accent);">
+                    <label for="modal-termos-toggle" class="btn" style="background-color: var(--color-accent);" tabindex="0">
                         Ler termos de doação
                     </label>
                 </p>

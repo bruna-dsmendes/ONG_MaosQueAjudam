@@ -55,22 +55,33 @@ function aplicarEstadoCampo(campo, resultado) {
     campo.classList.remove('campo-valido', 'campo-invalido');
     campo.classList.add(resultado.valido ? 'campo-valido' : 'campo-invalido');
 
+    // aria-invalid diz explicitamente pra tecnologia assistiva se o valor
+    // atual é aceito ou não, independente da cor da borda (que um leitor
+    // de tela não enxerga)
+    campo.setAttribute('aria-invalid', String(!resultado.valido));
+
     const proximoIrmao = campo.nextElementSibling;
     const mensagemExistente = proximoIrmao && proximoIrmao.classList.contains('field-error')
         ? proximoIrmao
         : null;
+    const idMensagem = `${campo.id}-erro`;
 
     if (!resultado.valido) {
         // injeta (ou reaproveita) um <span> de erro logo depois do campo
         const mensagemEl = mensagemExistente || document.createElement('span');
         mensagemEl.className = 'field-error';
+        mensagemEl.id = idMensagem;
         mensagemEl.textContent = resultado.mensagem;
         if (!mensagemExistente) {
             campo.insertAdjacentElement('afterend', mensagemEl);
         }
+        // liga o campo à mensagem: leitores de tela anunciam o erro junto
+        // do campo, mesmo que ele não esteja visualmente ao lado
+        campo.setAttribute('aria-describedby', idMensagem);
     } else if (mensagemExistente) {
-        // campo ficou válido: remove a mensagem de erro que existia antes
+        // campo ficou válido: remove a mensagem de erro e desfaz o vínculo
         mensagemExistente.remove();
+        campo.removeAttribute('aria-describedby');
     }
 }
 

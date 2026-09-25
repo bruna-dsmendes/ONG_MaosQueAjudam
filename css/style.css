@@ -188,6 +188,24 @@ header .logo img {
    FLEXBOX — alinhamentos e componentes internos
    ========================================================================== */
 
+/* Fica fora da tela até receber foco (Tab), quando aparece no topo —
+   técnica padrão de "skip link" pra bypass de blocos repetitivos (WCAG 2.4.1) */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: var(--space-3);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-sm);
+    z-index: 50;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: var(--space-3);
+}
+
 header {
     display: flex;
     align-items: center;
@@ -217,8 +235,27 @@ header nav a.active {
    sem precisar de nenhuma linha de JavaScript.
    ========================================================================== */
 
+/* Visualmente oculto, mas continua alcançável por Tab e operável com
+   Space (comportamento nativo de checkbox) — display:none removeria o
+   elemento inteiro da árvore de foco, quebrando o menu pra quem navega
+   só pelo teclado (WCAG 2.1.1 — Keyboard) */
 .menu-toggle {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Indicador de foco visível no botão hambúrguer quando o checkbox
+   (oculto, mas focável) recebe foco via teclado */
+.menu-toggle:focus-visible + .hamburger {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 .hamburger {
@@ -653,8 +690,33 @@ select:user-invalid {
    controla a visibilidade do overlay, sem depender de JavaScript.
    ========================================================================== */
 
+/* Mesmo problema do .menu-toggle: display:none removeria o checkbox da
+   árvore de foco, impedindo abrir o modal só com o teclado */
 .modal-toggle {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Foco visível no botão "Ler termos de doação" quando o checkbox
+   (oculto, mas focável) recebe foco via Tab */
+.modal-toggle:focus-visible ~ p .btn {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Labels usadas como botão (Entendi, fechar) precisam do próprio indicador
+   de foco, já que também recebem tabindex="0" pra serem operáveis */
+label.btn:focus-visible,
+.modal-close:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 .modal-overlay {

@@ -8,6 +8,11 @@
 </head>
 <body>
 
+    <!-- Skip link: primeiro elemento focável da página, permite pular o
+         cabeçalho/menu e ir direto pro conteúdo principal via teclado
+         (WCAG 2.4.1 — Bypass Blocks) -->
+    <a href="#app" class="skip-link">Pular para o conteúdo principal</a>
+
     <header>
         <a href="#/" class="logo">
             <img src="../images/logo.png" alt="Logotipo da ONG Mãos que Ajudam">
@@ -20,11 +25,11 @@
             <span></span>
         </label>
 
-        <nav>
+        <nav aria-label="Navegação principal">
             <ul>
                 <li><a href="#/">Início</a></li>
                 <li class="dropdown">
-                    <a href="#/projetos-sociais">Projetos sociais</a>
+                    <a href="#/projetos-sociais" aria-haspopup="true" aria-expanded="false">Projetos sociais</a>
                     <ul class="submenu">
                         <li><a href="#/projetos-sociais">Educação para Todos</a></li>
                         <li><a href="#/projetos-sociais">Prato Cheio</a></li>

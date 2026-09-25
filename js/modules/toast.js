@@ -13,6 +13,11 @@ export function mostrarToast(mensagem) {
     if (!toast) {
         toast = document.createElement('div');
         toast.className = 'toast';
+        // role="status" + aria-live="polite": o leitor de tela anuncia o
+        // texto sozinho assim que ele muda, sem o usuário precisar "achar"
+        // o toast na tela pra saber que algo aconteceu
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
         toast.innerHTML = '<span class="toast-icon" aria-hidden="true">✓</span><span class="toast-texto"></span>';
         document.body.appendChild(toast);
     }
