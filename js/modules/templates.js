@@ -327,15 +327,26 @@ export const Templates = {
         }
     },
 
+    // Imagem responsiva: o navegador escolhe entre 400w e 900w conforme a
+    // largura em que ela realmente aparece (atributo sizes) e a densidade da tela.
+    _imagemProjeto(p) {
+        const sizes = '(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw';
+        return `
+                <picture>
+                    <source type="image/webp" sizes="${sizes}"
+                        srcset="../images/${p.imagem}-400.webp 400w, ../images/${p.imagem}.webp 900w">
+                    <img src="../images/${p.imagem}.jpg" sizes="${sizes}"
+                        srcset="../images/${p.imagem}-400.jpg 400w, ../images/${p.imagem}.jpg 900w"
+                        alt="${p.alt}" width="900" height="491" loading="lazy">
+                </picture>`;
+    },
+
     // Card resumido usado na home (dentro do grid de 12 colunas)
     _cardProjeto(chave) {
         const p = Templates._dadosProjetos[chave];
         return `
             <article class="col-md-6 col-lg-4">
-                <picture>
-                    <source srcset="../images/${p.imagem}.webp" type="image/webp">
-                    <img src="../images/${p.imagem}.jpg" alt="${p.alt}">
-                </picture>
+                ${Templates._imagemProjeto(p)}
                 <div>${p.badge}</div>
                 <h3>${p.titulo}</h3>
                 <p>${p.resumo}</p>
@@ -348,10 +359,7 @@ export const Templates = {
         const p = Templates._dadosProjetos[chave];
         return `
             <article id="${chave}">
-                <picture>
-                    <source srcset="../images/${p.imagem}.webp" type="image/webp">
-                    <img src="../images/${p.imagem}.jpg" alt="${p.alt}">
-                </picture>
+                ${Templates._imagemProjeto(p)}
                 <div>${p.badge}</div>
                 <h2>${p.titulo}</h2>
                 <p>${p.resumo}</p>
