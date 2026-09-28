@@ -9,17 +9,20 @@
   status = 200
 
 # imagens, css e js: cache longo no navegador e na CDN
+# css e js têm hash no nome: podem ficar em cache por 1 ano sem risco,
+# porque quando o conteúdo muda o nome muda
 [[headers]]
-  for = "/images/*"
+  for = "/css/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/css/*"
-  [headers.values]
-    Cache-Control = "public, max-age=86400"
-
-[[headers]]
   for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# imagens mantêm o mesmo nome: cache curto pra atualizações aparecerem
+[[headers]]
+  for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=86400"

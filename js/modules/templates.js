@@ -17,6 +17,18 @@ export const Templates = {
                     A ONG Mãos que Ajudam atua há mais de 10 anos conectando voluntários,
                     doadores e famílias em situação de vulnerabilidade em todo o Brasil.
                 </p>
+                <div class="hero-acoes">
+                    <a href="#/cadastro" class="btn">Quero ajudar</a>
+                    <a href="#/projetos-sociais" class="btn btn-outline">Conheça os projetos</a>
+                </div>
+            </section>
+
+            <section id="numeros" aria-label="A ONG em números">
+                <ul class="numeros-lista">
+                    <li><strong>10+</strong><span>anos de atuação</span></li>
+                    <li><strong>5 mil</strong><span>famílias atendidas</span></li>
+                    <li><strong>3</strong><span>projetos ativos</span></li>
+                </ul>
             </section>
 
             <section id="sobre">
@@ -146,71 +158,71 @@ export const Templates = {
                     <fieldset>
                         <legend>Dados pessoais</legend>
 
-                        <label for="doador-nome">Nome completo</label>
+                        <div class="campo"><label for="doador-nome">Nome completo</label>
                         <input type="text" id="doador-nome" name="doador-nome"
                                required minlength="3" maxlength="100"
-                               placeholder="Digite seu nome completo">
+                               placeholder="Digite seu nome completo"></div>
 
-                        <label for="doador-email">E-mail</label>
+                        <div class="campo"><label for="doador-email">E-mail</label>
                         <input type="email" id="doador-email" name="doador-email"
-                               required placeholder="seuemail@exemplo.com">
+                               required placeholder="seuemail@exemplo.com"></div>
 
-                        <label for="doador-nascimento">Data de nascimento</label>
+                        <div class="campo"><label for="doador-nascimento">Data de nascimento</label>
                         <input type="date" id="doador-nascimento" name="doador-nascimento"
-                               required>
+                               required></div>
 
-                        <label for="doador-cpf">CPF</label>
+                        <div class="campo"><label for="doador-cpf">CPF</label>
                         <input type="text" id="doador-cpf" name="doador-cpf"
                                required inputmode="numeric"
                                pattern="\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}"
                                placeholder="000.000.000-00"
-                               title="Digite o CPF no formato 000.000.000-00">
+                               title="Digite o CPF no formato 000.000.000-00"></div>
 
-                        <label for="doador-telefone">Telefone</label>
+                        <div class="campo"><label for="doador-telefone">Telefone</label>
                         <input type="tel" id="doador-telefone" name="doador-telefone"
                                required inputmode="tel"
                                pattern="\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}"
                                placeholder="(00) 00000-0000"
-                               title="Digite o telefone no formato (00) 00000-0000">
+                               title="Digite o telefone no formato (00) 00000-0000"></div>
                     </fieldset>
 
                     <fieldset>
                         <legend>Endereço</legend>
 
-                        <label for="doador-cep">CEP</label>
+                        <div class="campo"><label for="doador-cep">CEP</label>
                         <input type="text" id="doador-cep" name="doador-cep"
                                required inputmode="numeric"
                                pattern="\\d{5}-\\d{3}"
                                placeholder="00000-000"
-                               title="Digite o CEP no formato 00000-000">
+                               title="Digite o CEP no formato 00000-000"></div>
 
-                        <label for="doador-cidade">Cidade</label>
+                        <div class="campo"><label for="doador-cidade">Cidade</label>
                         <input type="text" id="doador-cidade" name="doador-cidade"
-                               required maxlength="60" placeholder="Digite sua cidade">
+                               required maxlength="60" placeholder="Digite sua cidade"></div>
 
-                        <label for="doador-estado">Estado</label>
+                        <div class="campo"><label for="doador-estado">Estado</label>
                         <select id="doador-estado" name="doador-estado" required>
                             <option value="">Selecione</option>
                             <option value="SP">São Paulo</option>
                             <option value="RJ">Rio de Janeiro</option>
                             <option value="MG">Minas Gerais</option>
                             <option value="outro">Outro</option>
-                        </select>
+                        </select></div>
                     </fieldset>
 
                     <fieldset>
                         <legend>Dados da doação</legend>
 
-                        <label for="doador-valor">Valor da doação (R$)</label>
+                        <div class="campo"><label for="doador-valor">Valor da doação (R$)</label>
                         <input type="number" id="doador-valor" name="doador-valor"
-                               required min="5" step="0.01" placeholder="0,00">
+                               required min="5" step="0.01" placeholder="0,00"></div>
 
-                        <label for="doador-forma">Forma de doação</label>
+                        <div class="campo"><label for="doador-forma">Forma de doação</label>
                         <select id="doador-forma" name="doador-forma" required>
                             <option value="">Selecione</option>
                             <option value="unica">Doação única</option>
                             <option value="mensal">Doação mensal recorrente</option>
-                        </select>
+                        </select></div>
                     </fieldset>
 
                     <button type="submit" class="btn">Enviar cadastro de doador</button>
@@ -224,69 +236,69 @@ export const Templates = {
                     <fieldset>
                         <legend>Dados pessoais</legend>
 
-                        <label for="voluntario-nome">Nome completo</label>
+                        <div class="campo"><label for="voluntario-nome">Nome completo</label>
                         <input type="text" id="voluntario-nome" name="voluntario-nome"
                                required minlength="3" maxlength="100"
-                               placeholder="Digite seu nome completo">
+                               placeholder="Digite seu nome completo"></div>
 
-                        <label for="voluntario-email">E-mail</label>
+                        <div class="campo"><label for="voluntario-email">E-mail</label>
                         <input type="email" id="voluntario-email" name="voluntario-email"
-                               required placeholder="seuemail@exemplo.com">
+                               required placeholder="seuemail@exemplo.com"></div>
 
-                        <label for="voluntario-nascimento">Data de nascimento</label>
+                        <div class="campo"><label for="voluntario-nascimento">Data de nascimento</label>
                         <input type="date" id="voluntario-nascimento" name="voluntario-nascimento"
-                               required>
+                               required></div>
 
-                        <label for="voluntario-telefone">Telefone</label>
+                        <div class="campo"><label for="voluntario-telefone">Telefone</label>
                         <input type="tel" id="voluntario-telefone" name="voluntario-telefone"
                                required inputmode="tel"
                                pattern="\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}"
                                placeholder="(00) 00000-0000"
-                               title="Digite o telefone no formato (00) 00000-0000">
+                               title="Digite o telefone no formato (00) 00000-0000"></div>
                     </fieldset>
 
                     <fieldset>
                         <legend>Endereço</legend>
 
-                        <label for="voluntario-cep">CEP</label>
+                        <div class="campo"><label for="voluntario-cep">CEP</label>
                         <input type="text" id="voluntario-cep" name="voluntario-cep"
                                required inputmode="numeric"
                                pattern="\\d{5}-\\d{3}"
                                placeholder="00000-000"
-                               title="Digite o CEP no formato 00000-000">
+                               title="Digite o CEP no formato 00000-000"></div>
 
-                        <label for="voluntario-cidade">Cidade</label>
+                        <div class="campo"><label for="voluntario-cidade">Cidade</label>
                         <input type="text" id="voluntario-cidade" name="voluntario-cidade"
-                               required maxlength="60" placeholder="Digite sua cidade">
+                               required maxlength="60" placeholder="Digite sua cidade"></div>
 
-                        <label for="voluntario-estado">Estado</label>
+                        <div class="campo"><label for="voluntario-estado">Estado</label>
                         <select id="voluntario-estado" name="voluntario-estado" required>
                             <option value="">Selecione</option>
                             <option value="SP">São Paulo</option>
                             <option value="RJ">Rio de Janeiro</option>
                             <option value="MG">Minas Gerais</option>
                             <option value="outro">Outro</option>
-                        </select>
+                        </select></div>
                     </fieldset>
 
                     <fieldset>
                         <legend>Disponibilidade e interesse</legend>
 
-                        <label for="voluntario-area">Área de interesse</label>
+                        <div class="campo"><label for="voluntario-area">Área de interesse</label>
                         <select id="voluntario-area" name="voluntario-area" required>
                             <option value="">Selecione</option>
                             <option value="educacao">Educação para Todos</option>
                             <option value="alimentacao">Prato Cheio</option>
                             <option value="arte">Arte na Comunidade</option>
-                        </select>
+                        </select></div>
 
-                        <label for="voluntario-disponibilidade">Disponibilidade semanal</label>
+                        <div class="campo"><label for="voluntario-disponibilidade">Disponibilidade semanal</label>
                         <select id="voluntario-disponibilidade" name="voluntario-disponibilidade" required>
                             <option value="">Selecione</option>
                             <option value="manha">Manhã</option>
                             <option value="tarde">Tarde</option>
                             <option value="noite">Noite</option>
-                        </select>
+                        </select></div>
                     </fieldset>
 
                     <button type="submit" class="btn">Enviar cadastro de voluntário</button>

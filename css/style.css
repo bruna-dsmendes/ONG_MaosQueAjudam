@@ -1119,3 +1119,190 @@ footer h2 {
         transition: none !important;
     }
 }
+
+
+/* ==========================================================================
+   EXPERIÊNCIA v2 — identidade no cabeçalho, hero com ações, números em
+   destaque, formulários em cartões com duas colunas e menu refinado.
+   ========================================================================== */
+
+/* ---------- Cabeçalho ---------- */
+
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+header .logo img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    color: var(--color-neutral-900);
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        display: none;
+    }
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: 1.25rem;
+}
+
+.dropdown .submenu li {
+    padding: 0;
+}
+
+.dropdown .submenu li a {
+    padding: var(--space-2) var(--space-4);
+    text-align: left;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+}
+
+/* ---------- Hero com ações ---------- */
+
+#apresentacao {
+    padding-bottom: calc(var(--space-7) + var(--space-5));
+}
+
+.hero-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-on-tint-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-on-tint-primary);
+}
+
+/* ---------- Números em destaque (sobrepõem a base do hero) ---------- */
+
+#numeros {
+    position: relative;
+    z-index: 1;
+    margin-top: calc(-1 * (var(--space-7) + var(--space-2)));
+    padding-top: 0;
+    padding-bottom: var(--space-4);
+}
+
+.numeros-lista {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+.numeros-lista li {
+    flex: 1 1 200px;
+    max-width: 320px;
+    padding: var(--space-4);
+    text-align: center;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.numeros-lista strong {
+    display: block;
+    font-family: var(--font-family-heading);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.1;
+    color: var(--color-on-tint-primary);
+}
+
+.numeros-lista span {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-700);
+}
+
+/* ---------- Imagens dos projetos com proporção fixa ---------- */
+
+article picture img {
+    aspect-ratio: 900 / 491;
+    object-fit: cover;
+}
+
+/* ---------- Formulários em cartões, campos em duas colunas ---------- */
+
+#cadastro-doadores,
+#cadastro-voluntarios {
+    max-width: 860px;
+    margin: var(--space-5) auto;
+    padding: var(--space-5);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+#introducao,
+#historico {
+    max-width: 860px;
+}
+
+form {
+    max-width: none;
+}
+
+fieldset {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-3) var(--space-4);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.campo .field-error {
+    margin-top: 0;
+}
+
+input,
+select {
+    min-height: 44px;
+    padding: 0.6rem var(--space-3);
+}
+
+form button.btn {
+    min-width: 240px;
+}
+
+@media (max-width: 767px) {
+    #cadastro-doadores,
+    #cadastro-voluntarios {
+        padding: var(--space-4);
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+    form button.btn {
+        width: 100%;
+    }
+}
