@@ -15,6 +15,7 @@ import { validarFormularioCompleto } from './validation.js';
 import { aplicarMascara } from './masks.js';
 import { mostrarToast } from './toast.js';
 import { renderizarHistorico, iniciarHistorico } from './historico.js';
+import { mostrarPix } from './pagamento.js';
 
 const APP_CONTAINER_ID = 'app';
 
@@ -74,6 +75,11 @@ function handleSubmit(evento) {
         toggle.checked = false;
         toggle.dispatchEvent(new Event('change', { bubbles: true }));
     }
+
+    // doação: depois do cadastro, mostra como pagar
+    if (tipo === 'doador') {
+        mostrarPix(Number(dados['doador-valor']), dados['doador-forma']);
+    }
 }
 
 // Handler central de input: delega a formatação em tempo real pro masks.js,
@@ -84,6 +90,14 @@ function handleSubmit(evento) {
 function handleInput(evento) {
     const campo = evento.target;
     if (campo.tagName !== 'INPUT') {
+        return;
+    }
+
+    // Só os campos com máscara (CPF, telefone, CEP) passam por aqui. Nos
+    // demais (nome, cidade, e-mail...) não há nada a formatar, e mexer no
+    // cursor faria ele voltar pro começo a cada tecla digitada.
+    const temMascara = /-(cpf|telefone|cep)$/.test(campo.id);
+    if (!temMascara) {
         return;
     }
 

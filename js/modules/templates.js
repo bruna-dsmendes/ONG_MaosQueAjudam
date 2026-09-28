@@ -336,6 +336,31 @@ export const Templates = {
                     </div>
                 </div>
             </div>
+            <div class="modal-wrap">
+                <input type="checkbox" id="modal-pix-toggle" class="modal-toggle" tabindex="-1">
+                <div class="modal-overlay">
+                    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-pix-titulo">
+                        <div class="modal-header">
+                            <h2 id="modal-pix-titulo">Concluir doação por Pix</h2>
+                            <label for="modal-pix-toggle" class="modal-close" aria-label="Fechar" tabindex="0">&times;</label>
+                        </div>
+                        <div class="modal-body pix-corpo">
+                            <p>Cadastro recebido, obrigada! Falta só o pagamento de <strong id="pix-valor" class="pix-valor"></strong>.</p>
+                            <p>Abra o app do seu banco e escaneie o QR Code, ou use o Pix Copia e Cola:</p>
+                            <div id="pix-qr" class="pix-qr" role="img" aria-label="QR Code do Pix"></div>
+                            <label for="pix-codigo" class="pix-rotulo">Pix Copia e Cola</label>
+                            <textarea id="pix-codigo" class="pix-codigo" readonly rows="4"></textarea>
+                            <button type="button" class="btn" data-acao="copiar-pix">Copiar código</button>
+                            <p id="pix-aviso-mensal" class="pix-nota" hidden>
+                                Você escolheu doação mensal. Faça o primeiro Pix agora; a cobrança
+                                automática todo mês depende de uma operadora de pagamento, que ainda
+                                não está integrada.
+                            </p>
+                            <p class="pix-nota">Projeto acadêmico: a chave Pix usada aqui é fictícia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         `;
     },
 
