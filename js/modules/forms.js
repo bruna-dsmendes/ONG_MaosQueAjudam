@@ -67,6 +67,13 @@ function handleSubmit(evento) {
     );
 
     form.reset();
+
+    // fecha o modal que continha o formulário (o foco volta pro botão que o abriu)
+    const toggle = form.closest('.modal-wrap')?.querySelector('.modal-toggle');
+    if (toggle) {
+        toggle.checked = false;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+    }
 }
 
 // Handler central de input: delega a formatação em tempo real pro masks.js,

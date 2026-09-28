@@ -43,26 +43,42 @@ function sincronizarDropdown() {
     dropdown.addEventListener('focusout', atualizar);
 }
 
-// Gerencia o foco do modal de termos: ao abrir, manda o foco pra dentro
-// dele (pro botão "Entendi"); ao fechar, devolve o foco pra quem abriu —
-// sem isso, um usuário de teclado "perde" a posição na página
+// Gerencia o foco de QUALQUER modal (.modal-toggle): ao abrir, manda o foco
+// pra dentro dele (primeiro campo ou botão); ao fechar, devolve o foco pra
+// quem abriu. Sem isso, um usuário de teclado "perde" a posição na página.
 function gerenciarFocoModal() {
     const app = document.getElementById(APP_CONTAINER_ID);
 
     app.addEventListener('change', (evento) => {
-        if (evento.target.id !== 'modal-termos-toggle') {
+        const toggle = evento.target;
+        if (!toggle.classList?.contains('modal-toggle')) {
             return;
         }
 
-        const modal = document.querySelector('.modal-overlay .modal');
-        const gatilho = document.querySelector('label[for="modal-termos-toggle"].btn');
+        const modal = toggle.closest('.modal-wrap')?.querySelector('.modal');
 
-        if (evento.target.checked) {
-            modal?.querySelector('.btn')?.focus();
+        if (toggle.checked) {
+            modal?.querySelector('input:not([type="checkbox"]), select, .btn')?.focus();
         } else {
+            // o gatilho é a label (fora do modal) ligada a esse checkbox
+            const gatilho = [...document.querySelectorAll(`label[for="${toggle.id}"]`)]
+                .find((l) => !l.closest('.modal'));
             gatilho?.focus();
         }
     });
+}
+
+// Esc fecha o modal aberto mais recente (o último no DOM fica por cima)
+function fecharModalComEsc(evento) {
+    if (evento.key !== 'Escape') {
+        return;
+    }
+    const abertos = [...document.querySelectorAll('.modal-toggle:checked')];
+    const topo = abertos[abertos.length - 1];
+    if (topo) {
+        topo.checked = false;
+        topo.dispatchEvent(new Event('change', { bubbles: true }));
+    }
 }
 
 // <label> não ativa com Enter/Espaço por padrão, só com clique — mas como
@@ -89,4 +105,5 @@ export function iniciarAcessibilidade() {
     gerenciarFocoModal();
 
     document.addEventListener('keydown', handleTeclaEmLabelBotao);
+    document.addEventListener('keydown', fecharModalComEsc);
 }

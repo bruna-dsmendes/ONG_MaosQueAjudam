@@ -99,9 +99,8 @@ export const Templates = {
             <section id="introducao">
                 <h1>Cadastre-se como doador ou voluntário</h1>
                 <p>
-                    Escolha como você quer ajudar e preencha o formulário
-                    correspondente. Todos os campos marcados como obrigatórios
-                    precisam ser preenchidos corretamente para enviar o cadastro.
+                    Escolha como você quer ajudar. Ao clicar no botão, abre um
+                    formulário rápido, e todos os campos são obrigatórios.
                 </p>
 
                 <div class="alert alert-info">
@@ -112,6 +111,23 @@ export const Templates = {
                         máscara automática, então digite só os números no formato
                         indicado abaixo de cada um.
                     </div>
+                </div>
+            </section>
+
+            <section id="escolha-cadastro" aria-label="Escolha como quer ajudar">
+                <div class="opcoes-cadastro">
+                    <article class="opcao-cadastro">
+                        <span class="opcao-icone" aria-hidden="true">💚</span>
+                        <h2>Quero doar</h2>
+                        <p>Contribua com um valor único ou mensal e ajude a manter os projetos em funcionamento.</p>
+                        <label for="modal-doador-toggle" class="btn" tabindex="0" role="button" aria-haspopup="dialog">Cadastrar como doador</label>
+                    </article>
+                    <article class="opcao-cadastro">
+                        <span class="opcao-icone" aria-hidden="true">🤝</span>
+                        <h2>Quero ser voluntário</h2>
+                        <p>Doe seu tempo e seus talentos em educação, alimentação ou arte na comunidade.</p>
+                        <label for="modal-voluntario-toggle" class="btn" tabindex="0" role="button" aria-haspopup="dialog">Cadastrar como voluntário</label>
+                    </article>
                 </div>
             </section>
 
@@ -126,34 +142,19 @@ export const Templates = {
                 </ul>
             </section>
 
-            <section id="cadastro-doadores">
-                <h2>Cadastro de doadores</h2>
-
-                <input type="checkbox" id="modal-termos-toggle" class="modal-toggle">
+            <div class="modal-wrap">
+                <input type="checkbox" id="modal-doador-toggle" class="modal-toggle" tabindex="-1">
                 <div class="modal-overlay">
-                    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-termos-titulo">
+                    <div class="modal modal-grande" role="dialog" aria-modal="true" aria-labelledby="modal-doador-titulo">
                         <div class="modal-header">
-                            <h3 id="modal-termos-titulo">Termos de doação</h3>
-                            <label for="modal-termos-toggle" class="modal-close" aria-label="Fechar" tabindex="0">&times;</label>
+                            <h2 id="modal-doador-titulo">Cadastro de doador</h2>
+                            <label for="modal-doador-toggle" class="modal-close" aria-label="Fechar" tabindex="0">&times;</label>
                         </div>
-                        <div class="modal-body">
-                            <p>
-                                As doações feitas à ONG Mãos que Ajudam são destinadas
-                                integralmente aos projetos sociais em andamento. Doações
-                                recorrentes podem ser canceladas a qualquer momento pelo
-                                e-mail informado no cadastro, sem custo ou burocracia.
-                            </p>
-                        </div>
-                        <label for="modal-termos-toggle" class="btn" tabindex="0">Entendi</label>
-                    </div>
-                </div>
-                <p>
-                    <label for="modal-termos-toggle" class="btn" style="background-color: var(--color-accent);" tabindex="0">
-                        Ler termos de doação
-                    </label>
-                </p>
-
-                <form id="form-doador" novalidate>
+                        <p class="modal-termos-aviso">
+                            Ao enviar, você concorda com os
+                            <label for="modal-termos-toggle" class="link-label" tabindex="0" role="button" aria-haspopup="dialog">termos de doação</label>.
+                        </p>
+                        <form id="form-doador" novalidate>
 
                     <fieldset>
                         <legend>Dados pessoais</legend>
@@ -227,11 +228,19 @@ export const Templates = {
 
                     <button type="submit" class="btn">Enviar cadastro de doador</button>
                 </form>
-            </section>
+                    </div>
+                </div>
+            </div>
 
-            <section id="cadastro-voluntarios">
-                <h2>Cadastro de voluntários</h2>
-                <form id="form-voluntario" novalidate>
+            <div class="modal-wrap">
+                <input type="checkbox" id="modal-voluntario-toggle" class="modal-toggle" tabindex="-1">
+                <div class="modal-overlay">
+                    <div class="modal modal-grande" role="dialog" aria-modal="true" aria-labelledby="modal-voluntario-titulo">
+                        <div class="modal-header">
+                            <h2 id="modal-voluntario-titulo">Cadastro de voluntário</h2>
+                            <label for="modal-voluntario-toggle" class="modal-close" aria-label="Fechar" tabindex="0">&times;</label>
+                        </div>
+                        <form id="form-voluntario" novalidate>
 
                     <fieldset>
                         <legend>Dados pessoais</legend>
@@ -303,7 +312,30 @@ export const Templates = {
 
                     <button type="submit" class="btn">Enviar cadastro de voluntário</button>
                 </form>
-            </section>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-wrap">
+                <input type="checkbox" id="modal-termos-toggle" class="modal-toggle" tabindex="-1">
+                <div class="modal-overlay">
+                    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-termos-titulo">
+                        <div class="modal-header">
+                            <h2 id="modal-termos-titulo">Termos de doação</h2>
+                            <label for="modal-termos-toggle" class="modal-close" aria-label="Fechar" tabindex="0">&times;</label>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                As doações feitas à ONG Mãos que Ajudam são destinadas
+                                integralmente aos projetos sociais em andamento. Doações
+                                recorrentes podem ser canceladas a qualquer momento pelo
+                                e-mail informado no cadastro, sem custo ou burocracia.
+                            </p>
+                        </div>
+                        <label for="modal-termos-toggle" class="btn" tabindex="0" role="button">Entendi</label>
+                    </div>
+                </div>
+            </div>
         `;
     },
 

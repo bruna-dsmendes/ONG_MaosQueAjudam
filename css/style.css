@@ -1260,6 +1260,7 @@ article picture img {
 }
 
 #introducao,
+#escolha-cadastro,
 #historico {
     max-width: 860px;
 }
@@ -1305,4 +1306,95 @@ form button.btn {
     form button.btn {
         width: 100%;
     }
+}
+
+
+/* ==========================================================================
+   CADASTRO EM DOIS CARTÕES + FORMULÁRIOS EM MODAL
+   ========================================================================== */
+
+.opcoes-cadastro {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-5);
+}
+
+.opcao-cadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opcao-cadastro:hover {
+    transform: translateY(-4px);
+}
+
+.opcao-cadastro > * {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+}
+
+.opcao-cadastro p {
+    flex: 1;
+    color: var(--color-neutral-700);
+}
+
+.opcao-icone {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+/* Modal grande, com rolagem própria quando o formulário é maior que a tela */
+.modal {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-grande {
+    max-width: 760px;
+}
+
+.modal-header h2 {
+    font-size: var(--font-size-xl);
+    margin: 0;
+}
+
+.modal-header h2::after {
+    display: none;
+}
+
+.modal-termos-aviso {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-700);
+}
+
+/* label que parece link (abre o modal de termos) */
+.link-label {
+    color: var(--color-accent);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.link-label:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* trava a rolagem da página de fundo enquanto um modal está aberto */
+body:has(.modal-toggle:checked) {
+    overflow: hidden;
+}
+
+/* label usada como botão também mostra que é clicável */
+label.btn {
+    cursor: pointer;
 }
